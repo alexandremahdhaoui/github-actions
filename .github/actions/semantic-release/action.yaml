@@ -14,10 +14,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-versions: lts/*
-    - name: Setup semantic-release
-      run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog -D
-      shell: bash
+        node-versions: 'lst/*'
     - name: Generate semantic-release config
       run: |
         cat <<EOF | tee .releaserc
@@ -60,6 +57,9 @@ runs:
             ]
           }       
         EOF
+      shell: bash
+    - name: Setup semantic-release
+      run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog -D
       shell: bash
     - name: release
       run: |
