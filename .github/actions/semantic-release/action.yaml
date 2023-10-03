@@ -23,7 +23,7 @@ runs:
               "main",
               {
                 "name": "release/*",
-                "prerelease": "\${name.replace(/^release\\//g, \"\")}"
+                "prerelease": "\${name.replace(/^release\\\\//g, \"\")}"
               }
             ],
             "repositoryUrl": "${{ github.server_url }}/${{ github.repository }}",
