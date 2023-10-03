@@ -1,5 +1,13 @@
 # Changelog
 
+# [0.2.0-initial-commit.2](https://github.com/alexandremahdhaoui/release/compare/v0.2.0-initial-commit.1...v0.2.0-initial-commit.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* **release/initial-commit:** fixed github-action ([59eba0a](https://github.com/alexandremahdhaoui/release/commit/59eba0a06addbd0fd20433d1bb6502b9a4220b5b))
+* **release/initial-commit:** fixed release ([a2d07f1](https://github.com/alexandremahdhaoui/release/commit/a2d07f177947c9176c62281abc617b755048bb88))
+
 # [0.2.0-initial-commit.1](https://github.com/alexandremahdhaoui/release/compare/v0.1.0...v0.2.0-initial-commit.1) (2023-10-03)
 
 
