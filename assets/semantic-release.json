@@ -1,0 +1,38 @@
+{
+  "branches": [
+    "main",
+    {
+      "name": "release/*",
+      "prerelease": "\\${name.replace(/^release\\//g, \"\")}"
+    }
+  ],
+  "repositoryUrl": "${{ github.server_url }}/${{ github.repository }}",
+  "debug": "true",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md",
+        "changelogTitle": "# Changelog"
+      }
+    ],
+    [
+      "semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md"]
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "release/**"
+          }
+        ]
+      }
+    ]
+  ]
+}
