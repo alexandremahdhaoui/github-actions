@@ -1,0 +1,68 @@
+name: Release
+description: Creates a new release using semantic-release
+
+inputs:
+  GH_TOKEN:
+    description: Github token with read/write access to your repo
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-versions: 'lst/*'
+    - name: Generate semantic-release config
+      run: |
+        cat <<EOF | tee .releaserc
+          {
+            "branches": [
+              "main",
+              {
+                "name": "release/*",
+                "prerelease": "\${name.replace(/^release\\\\//g, \"\")}"
+              }
+            ],
+            "repositoryUrl": "${{ github.server_url }}/${{ github.repository }}",
+            "debug": "true",
+            "plugins": [
+              "@semantic-release/commit-analyzer",
+              "@semantic-release/release-notes-generator",
+              [
+                "@semantic-release/changelog",
+                {
+                  "changelogFile": "CHANGELOG.md",
+                  "changelogTitle": "# Changelog"
+                }
+              ],
+              [
+                "@semantic-release/git",
+                {
+                  "assets": ["CHANGELOG.md"]
+                }
+              ],
+              [
+                "@semantic-release/github",
+                {
+                  "assets": [
+                    {
+                      "path": "release/**"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }       
+        EOF
+      shell: bash
+    - name: Setup semantic-release
+      run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog -D
+      shell: bash
+    - name: release
+      run: |
+        export GH_TOKEN="${{ inputs.GH_TOKEN }}"
+        npx semantic-release
+      shell: bash
