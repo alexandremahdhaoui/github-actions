@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/alexandremahdhaoui/release/compare/v0.2.0...v0.2.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **release/action:** fixed github action release ([ef93bb4](https://github.com/alexandremahdhaoui/release/commit/ef93bb45ec1502a28a2c30f7ed1e7e2c2901770a))
+* **release/action:** fixed workflow ([a775777](https://github.com/alexandremahdhaoui/release/commit/a775777a141777564bdfc6383a67aac6fb1c8b26))
+
 ## [0.2.1-action.1](https://github.com/alexandremahdhaoui/release/compare/v0.2.0...v0.2.1-action.1) (2023-10-03)
 
 
