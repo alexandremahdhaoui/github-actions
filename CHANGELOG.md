@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/alexandremahdhaoui/release/compare/v0.2.1...v0.2.2) (2023-10-14)
+
+
+### Bug Fixes
+
+* upgraded checkout version ([69cd731](https://github.com/alexandremahdhaoui/release/commit/69cd731417eddb0be920c311a41db99bc708fe9d))
+
 ## [0.2.1](https://github.com/alexandremahdhaoui/release/compare/v0.2.0...v0.2.1) (2023-10-03)
 
 
