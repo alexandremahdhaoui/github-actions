@@ -6,7 +6,7 @@ To add this
 
 ```shell
 mkdir -p .github/workflows
-cat <<EOF | tee .github/workflows/release.yaml
+cat <<'EOF' | tee .github/workflows/release.yaml
 name: Release
 
 on:
