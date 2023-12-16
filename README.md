@@ -1,5 +1,38 @@
 # Release
 
+## Getting started
+
+To add this 
+
+```shell
+mkdir -p .github/workflows
+cat <<EOF | tee .github/workflows/release.yaml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Git
+        uses: alexandremahdhaoui/setup-git@v0.0.3
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: alexandremahdhaoui/release@v0.2.1
+        with:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+EOF
+```
+
 ## Git Workflow
 
 We want to adopt a git workflow that seamlessly integrate with our deployment. To 
@@ -31,3 +64,4 @@ deployed in preprod & prod? How is that process automated?
 
 Another approach would be deploying pre-releases from `release/**` branches to pre-production and merging PRs that 
 passes tests. This then allows to deploy development branches to staging concurrently.
+
