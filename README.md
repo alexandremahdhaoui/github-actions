@@ -27,7 +27,7 @@ jobs:
         uses: alexandremahdhaoui/setup-git@v0.0.3
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: alexandremahdhaoui/release@v0.2.1
+      - uses: alexandremahdhaoui/release@v0.2.2
         with:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 EOF
