@@ -11,26 +11,44 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Setup Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-versions: 'lst/*'
+        node-version: latest
+
     - name: Generate semantic-release config
+      shell: bash
       run: |
-        cat <<EOF | tee .releaserc
+        cat <<'EOF' | tee .releaserc
           {
+
             "branches": [
               "main",
-              {
-                "name": "release/*",
-                "prerelease": "\${name.replace(/^release\\\\//g, \"\")}"
-              }
             ],
+
             "repositoryUrl": "${{ github.server_url }}/${{ github.repository }}",
             "debug": "true",
+
             "plugins": [
-              "@semantic-release/commit-analyzer",
+              [
+                "@semantic-release/commit-analyzer",
+                {
+                  "releaseRules": [
+                    { "type": "\u26a0\ufe0f", "release": "major" },
+                    { "type": "\u2728", "release": "minor" },
+                    { "type": "\ud83d\udf31", "release": "patch" },
+                    { "type": "\ud83d\udc1b", "release": "patch" },
+                    { "type": "📖", "release": false }
+                  ],
+                  "parserOpts": {
+                    "headerPattern": "/^(.{2})(.{1})(.+)/"
+                  }
+                }
+              ],
+
               "@semantic-release/release-notes-generator",
+
               [
                 "@semantic-release/changelog",
                 {
@@ -38,12 +56,14 @@ runs:
                   "changelogTitle": "# Changelog"
                 }
               ],
+
               [
                 "@semantic-release/git",
                 {
                   "assets": ["CHANGELOG.md"]
                 }
               ],
+
               [
                 "@semantic-release/github",
                 {
@@ -57,10 +77,11 @@ runs:
             ]
           }       
         EOF
-      shell: bash
+
     - name: Setup semantic-release
       run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog -D
       shell: bash
+
     - name: release
       run: |
         export GH_TOKEN="${{ inputs.GH_TOKEN }}"
